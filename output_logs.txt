@@ -1,0 +1,262 @@
+(venv) PS C:\Users\kphan\Downloads\Phaneendra_Kanduri_vexoo_assignment\Phaneendra_Kanduri_vexoo_assignment\part1_ingestion> python ingestion_pipeline.py
+
+============================================================
+   VEXOO LABS — Part 1: Document Ingestion Pipeline Demo
+============================================================
+
+[1] Sliding window chunking...
+    Total chunks: 3
+    Chunk 0: 2500 chars
+    Chunk 1: 2500 chars
+    Chunk 2: 1883 chars
+
+[2] Building Knowledge Pyramids...
+    Pyramids built: 3
+
+[3] Knowledge Pyramid — first 2 chunks:
+
+============================================================
+  PYRAMID — Chunk #0
+============================================================
+[Layer 0] Raw Text (first 150 chars):
+   Artificial intelligence (AI) is the simulation of human intelligence processes by machines, especially computer systems. These processes include lear...
+
+[Layer 1] Summary:
+  Artificial intelligence (AI) is the simulation of human intelligence processes by machines,
+especially computer systems. These processes include learning, reasoning, and self-correction.
+
+[Layer 2] Category: Medical
+
+[Layer 3] Distilled Knowledge:
+  Keywords   : ['learning', 'language', 'computer', 'data', 'deep']
+  TF-IDF Vec : [0.4481, 0.9224, 0.6437, 0.3904, 0.6442, 0.4699, 0.5966, 0.7797, 0.2358, 0.3613]
+
+============================================================
+  PYRAMID — Chunk #1
+============================================================
+[Layer 0] Raw Text (first 150 chars):
+  man language as it is spoken and written. NLP has been around for more than 50 years and has roots in linguistics. NLP enables computers to understand...
+
+[Layer 1] Summary:
+  man
+language as it is spoken and written. NLP has been around for more than 50 years and has roots
+in linguistics.
+
+[Layer 2] Category: Mathematics
+
+[Layer 3] Distilled Knowledge:
+  Keywords   : ['learning', 'data', 'attention', 'gradient', 'descent']
+  TF-IDF Vec : [0.5087, 0.3549, 0.8388, 0.8977, 0.3239, 0.9652, 0.4024, 0.1821, 0.7872, 0.9075]
+
+[4] Query: "neural networks and gradient descent optimisation"
+
+============================================================
+  RETRIEVAL RESULTS | Query: "neural networks and gradient descent optimisation"
+============================================================
+
+  Rank #1 | Chunk 2 | Mathematics | distilled_knowledge
+  Cosine=0.7539  Fuzzy=0.2712  Combined=0.5608
+  Snippet: lysis, and self-driving cars.  The concept of a neural network was first introduced in 1943 by Warren McCulloch and Walter Pitts. Modern neural networks consist of layers of interconnected nodes or ne...
+
+  Rank #2 | Chunk 0 | Medical | distilled_knowledge
+  Cosine=0.7927  Fuzzy=0.1872  Combined=0.5505
+  Snippet:  Artificial intelligence (AI) is the simulation of human intelligence processes by machines, especially computer systems. These processes include learning, reasoning, and self-correction. Specific app...
+
+  Rank #3 | Chunk 1 | Mathematics | distilled_knowledge
+  Cosine=0.753  Fuzzy=0.2454  Combined=0.55
+  Snippet: man language as it is spoken and written. NLP has been around for more than 50 years and has roots in linguistics. NLP enables computers to understand human communication, process large amounts of tex...
+
+[5] Query: "transformer attention mechanism language models"
+
+============================================================
+  RETRIEVAL RESULTS | Query: "transformer attention mechanism language models"
+============================================================
+
+  Rank #1 | Chunk 1 | Mathematics | distilled_knowledge
+  Cosine=0.7944  Fuzzy=0.1988  Combined=0.5561
+  Snippet: man language as it is spoken and written. NLP has been around for more than 50 years and has roots in linguistics. NLP enables computers to understand human communication, process large amounts of tex...
+
+  Rank #2 | Chunk 0 | Medical | distilled_knowledge
+  Cosine=0.8087  Fuzzy=0.1717  Combined=0.5539
+  Snippet:  Artificial intelligence (AI) is the simulation of human intelligence processes by machines, especially computer systems. These processes include learning, reasoning, and self-correction. Specific app...
+
+  Rank #3 | Chunk 2 | Mathematics | distilled_knowledge
+  Cosine=0.6677  Fuzzy=0.16  Combined=0.4646
+  Snippet: lysis, and self-driving cars.  The concept of a neural network was first introduced in 1943 by Warren McCulloch and Walter Pitts. Modern neural networks consist of layers of interconnected nodes or ne...
+
+============================================================
+   Pipeline demo complete.
+============================================================
+
+(venv) PS C:\Users\kphan\Downloads\Phaneendra_Kanduri_vexoo_assignment\Phaneendra_Kanduri_vexoo_assignment\part1_ingestion> cd ..
+(venv) PS C:\Users\kphan\Downloads\Phaneendra_Kanduri_vexoo_assignment\Phaneendra_Kanduri_vexoo_assignment> cd part2_training
+(venv) PS C:\Users\kphan\Downloads\Phaneendra_Kanduri_vexoo_assignment\Phaneendra_Kanduri_vexoo_assignment\part2_training> python gsm8k_finetune.py
+
+============================================================
+   VEXOO LABS — Part 2: GSM8K LoRA Fine-Tuning
+   Mode: SIMULATION (no GPU)
+============================================================
+[Data] Loading openai/gsm8k (main config)...
+[Data] Train: 3000 | Eval: 1000
+
+[Sim] Initialising MockTokenizer and MockModel...
+[MockModel] Simulated model loaded: meta-llama/Llama-3.2-1B
+
+[Sim] Formatted sample (first 120 chars): Question: Natalia sold clips to 48 of her friends in April, and then she sold half as many clips in May. How many clips ...
+[Sim] input_ids[:10]     : [3745, 8507, 13567, 24960, 4665, 28931, 15805, 26466, 29077, 1269]
+[Sim] attention_mask[:10]: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+
+[Train] Simulated training | 3 epochs | 1125 total steps
+
+  === Epoch 1/3 ===
+  Epoch 1: 100%|████████████████████████████████████████████| 375/375 [00:00<00:00, 3765.17step/s]
+  Epoch 1 done. Approx loss: 1.0932
+
+  === Epoch 2/3 ===
+  Epoch 2: 100%|████████████████████████████████████████████| 375/375 [00:00<00:00, 3864.92step/s]
+  Epoch 2 done. Approx loss: 0.7077
+
+  === Epoch 3/3 ===
+  Epoch 3: 100%|████████████████████████████████████████████| 375/375 [00:00<00:00, 5458.83step/s]
+  Epoch 3 done. Approx loss: 0.3000
+
+[Sim] Loss Log (step, loss):
+  Step   100: 1.3835  ###########################
+  Step   200: 1.2873  #########################
+  Step   300: 1.2091  ########################
+  Step   400: 1.0463  ####################
+  Step   500: 0.9704  ###################
+  Step   600: 0.8651  #################
+  Step   700: 0.7708  ###############
+  Step   800: 0.6443  ############
+  Step   900: 0.5231  ##########
+  Step  1000: 0.4154  ########
+  Step  1100: 0.3068  ######
+
+[Eval] Evaluating on eval set...
+
+  Sample #1
+  Question : A pole is 20 meters long. It got cut in a way that left it 30% shorter. How long...
+  GT Answer: 14
+  Predicted: 17
+  Match    : NO
+
+  Sample #2
+  Question : Jamie is in a walking group with 4 other ladies.  The ladies all walk 3 miles to...
+  GT Answer: 36
+  Predicted: 36
+  Match    : YES
+
+  Sample #3
+  Question : Brenda volunteered to make 3 trays of banana pudding for the family reunion.  Ea...
+  GT Answer: 14
+  Predicted: 14
+  Match    : YES
+
+[Eval] Exact-Match: 336/1000 = 0.3360 (33.6%)
+
+============================================================
+   Part 2 complete.
+============================================================
+
+(venv) PS C:\Users\kphan\Downloads\Phaneendra_Kanduri_vexoo_assignment\Phaneendra_Kanduri_vexoo_assignment\part2_training> cd ..
+(venv) PS C:\Users\kphan\Downloads\Phaneendra_Kanduri_vexoo_assignment\Phaneendra_Kanduri_vexoo_assignment> cd bonus
+(venv) PS C:\Users\kphan\Downloads\Phaneendra_Kanduri_vexoo_assignment\Phaneendra_Kanduri_vexoo_assignment\bonus> python reasoning_adapter.py
+
+=================================================================
+   VEXOO LABS — Bonus: ReasoningAdapter Demo
+=================================================================
+
+=================================================================
+  Query  : Calculate 15% of 840 plus the square root of 144
+  Type   : MATH
+  Handler: handle_math
+=================================================================
+{
+  "domain": "math",
+  "expression_found": "15%",
+  "steps": [
+    "Step 1: Identified expression: '15'",
+    "Step 2: Applied arithmetic evaluation.",
+    "Step 3: Result = 15"
+  ],
+  "result": 15
+}
+
+=================================================================
+  Query  : Can I sue my landlord for breaching the rental contract?
+  Type   : LEGAL
+  Handler: handle_legal
+=================================================================
+{
+  "domain": "legal",
+  "jurisdiction": "Jurisdiction not specified \u2014 consult local counsel",
+  "relevant_law": "Contract Act / UCC (Uniform Commercial Code)",
+  "key_considerations": [
+    "Collect and preserve all documentary evidence.",
+    "Observe applicable statutes of limitations.",
+    "Distinguish between civil and criminal liability."
+  ],
+  "recommendation": "Review all contract terms carefully. Identify breach clauses and ensure conditions precedent are met before initiating legal action.",
+  "disclaimer": "Simulated response \u2014 not legal advice. Consult a licensed attorney."
+}
+
+=================================================================
+  Query  : I have a high fever, severe headache, and fatigue — what should I do?
+  Type   : MEDICAL
+  Handler: handle_medical
+=================================================================
+{
+  "domain": "medical",
+  "symptoms_detected": [
+    "Elevated body temperature (fever)",
+    "Headache / cephalgia",
+    "Fatigue / weakness"
+  ],
+  "urgency_level": "MODERATE \u2014 consult a healthcare provider within 24-48 hours",
+  "suggested_action": "Schedule an appointment with a licensed healthcare provider for clinical evaluation and diagnosis.",
+  "self_care_tips": [
+    "Rest adequately and stay well-hydrated.",
+    "Monitor symptom progression and note any changes.",
+    "Avoid self-medicating without professional guidance."
+  ],
+  "disclaimer": "Simulated response \u2014 NOT medical advice. Always consult a qualified healthcare professional."
+}
+
+=================================================================
+  Query  : What are the latest developments in renewable energy storage?
+  Type   : GENERAL
+  Handler: handle_general
+=================================================================
+{
+  "domain": "general",
+  "top_results": [
+    {
+      "rank": 1,
+      "title": "Comprehensive Guide to What Are The",
+      "source": "knowledge_base_v2",
+      "score": 0.9215,
+      "snippet": "An in-depth overview of What Are The, covering key concepts, best practices, and recent developments."
+    },
+    {
+      "rank": 2,
+      "title": "What Are The: Frequently Asked Questions",
+      "source": "faq_database",
+      "score": 0.6048,
+      "snippet": "Answers to the most common questions about What Are The, including definitions and practical applications."
+    },
+    {
+      "rank": 3,
+      "title": "Recent Research on What Are The",
+      "source": "academic_corpus",
+      "score": 0.4523,
+      "snippet": "A summary of the latest peer-reviewed research on What Are The, highlighting emerging trends and open questions."
+    }
+  ],
+  "total_simulated_results": 1948,
+  "note": "Results are simulated. Connect a live retrieval backend for real semantic search."
+}
+
+=================================================================
+   ReasoningAdapter demo complete.
+=================================================================
